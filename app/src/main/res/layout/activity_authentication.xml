@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthenticationActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#EAE4E4"
+        app:cardCornerRadius="30dp"
+        android:layout_centerInParent="true"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login Account"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:padding="18dp"
+                android:layout_marginTop="27dp"
+                android:ems="16"
+                android:inputType="textCapWords"
+                android:background="@drawable/custom_et"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:padding="18dp"
+                android:layout_marginTop="27dp"
+                android:ems="16"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/custom_et"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:padding="18dp"
+                android:layout_marginTop="32dp"
+                android:ems="16"
+                android:inputType="textPassword"
+                android:background="@drawable/custom_et"/>
+
+            <TextView
+                android:id="@+id/resetPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset password?"
+                android:textStyle="bold"
+                android:layout_gravity="end"
+                android:padding="5dp"
+                android:layout_marginEnd="12dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/LoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:backgroundTint="#02953A"/>
+
+            <TextView
+                android:id="@+id/registerUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:padding="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
