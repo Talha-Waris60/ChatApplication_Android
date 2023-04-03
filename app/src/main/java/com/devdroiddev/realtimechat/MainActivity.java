@@ -1,13 +1,17 @@
 package com.devdroiddev.realtimechat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("User Info");
 
 
+
+
         // TODO: Call the User Adapter Object Here
         adapter = new UserAdapter(this);
         binding.recycler.setAdapter(adapter);
@@ -47,8 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String uid = dataSnapshot.getKey();
                     if (!uid.equals(FirebaseAuth.getInstance().getUid())) {
-                        UserModel model = dataSnapshot.child(uid).getValue(UserModel.class);
-                        adapter.add(model);
+                        UserModel model = dataSnapshot.getValue(UserModel.class);
+                        if (model != null) {
+                            adapter.add(model);
+                        } else {
+                            Log.e("MainActivity", "Null UserModel object retrieved from database.");
+                        }
                     }
                 }
             }
@@ -69,5 +79,16 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu,menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this,AuthenticationActivity.class));
+            finish();
+            return true;
+        }
+        return false;
     }
 }

@@ -1,10 +1,13 @@
 package com.devdroiddev.realtimechat;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,8 +30,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     // TODO: Make a Method to Add the Data
 
     public void add(UserModel userModel) {
-        userModelList.add(userModel);
-        notifyDataSetChanged();
+        if (userModel != null) {
+            userModelList.add(userModel);
+            notifyDataSetChanged();
+        }
     }
 
     // TODO: Make a Method to Clear the Data From the List
@@ -49,9 +54,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         UserModel model = userModelList.get(position);
         if (model != null) {
-            holder.name.setText(model.getUserName());
-            holder.email.setText(model.getUserEmail());
+            if (model.getUserName() != null) {
+                holder.name.setText(model.getUserName());
+            }
+            if (model.getUserEmail() != null) {
+                holder.email.setText(model.getUserEmail());
+            }
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ChatActivity.class);
+                intent.putExtra("id",model.getUserId());
+                context.startActivity(intent);
+            }
+        });
     }
 
 
