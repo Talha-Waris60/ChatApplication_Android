@@ -71,10 +71,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String message = binding.writeMessage.getText().toString();
-                if (!message.trim().isEmpty()) {
+                if (message.trim().length() > 0) {
                     sendMessage(message);
-                } else {
-                    Toast.makeText(ChatActivity.this, "Cannot send an empty message", Toast.LENGTH_SHORT).show();
                 }
             }
         });

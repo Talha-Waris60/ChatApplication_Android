@@ -45,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
         binding.recycler.setAdapter(adapter);
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
 
+        binding.logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this,AuthenticationActivity.class));
+                finish();
+            }
+        });
+
         // TODO: Click Listener
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,25 +79,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    // TODO: For Menu
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.logout) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this,AuthenticationActivity.class));
-            finish();
-            return true;
-        }
-        return false;
     }
 }
